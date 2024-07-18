@@ -2,50 +2,50 @@
 @using System.Drawing
 
 <HeadContent>
-    <style>
-        :root {
-            --board-bg: @ColorTranslator.ToHtml(BoardColor);
-            --player1: @ColorTranslator.ToHtml(Player1Color);
-            --player2: @ColorTranslator.ToHtml(Player2Color);
-        }
-    </style>
+   <style>
+      :root {
+         --board-bg: @ColorTranslator.ToHtml(BoardColor);
+         --player1: @ColorTranslator.ToHtml(Player1Color);
+         --player2: @ColorTranslator.ToHtml(Player2Color);
+      }
+   </style>
 </HeadContent>
 
 <nav>
-    @for (byte i = 0; i < 7; i++)
-    {
-        var col = i;
-        <span title="Click to play a piece" @onclick="() => PlayPiece(col)">🔽</span>
-    }
+   @for (byte i = 0; i < 7; i++)
+   {
+      var col = i;
+      <span title="Click to play a piece" @onclick="() => PlayPiece(col)">🔽</span>
+   }
 </nav>
 
 <article>
-    @winnerMessage  <button style="@ResetStyle" @onclick="ResetGame">Reset the game</button>
-    <br />
-    <span class="alert-danger">@errorMessage</span>
-    <span class="alert-info">@CurrentTurn</span>
+   @winnerMessage <button style="@ResetStyle" @onclick="ResetGame">Reset the game</button>
+   <br />
+   <span class="alert-danger">@errorMessage</span>
+   <span class="alert-info">@CurrentTurn</span>
 </article>
 
 <div>
-    <div class="board">
-    @for (var i = 0; i < 42; i++)
-    {
-        <span class="container">
+   <div class="board">
+      @for (var i = 0; i < 42; i++)
+      {
+         <span class="container">
             <span></span>
-        </span>
-    }
-    </div>
-    @for (var i = 0; i < 42; i++)
-    {
-       <span class="@pieces[i]"></span>
-    }
+         </span>
+      }
+   </div>
+   @for (var i = 0; i < 42; i++)
+   {
+      <span class="@pieces[i]"></span>
+   }
 </div>
 
 @code {
    private string[] pieces = new string[42];
    private string winnerMessage = string.Empty;
    private string errorMessage = string.Empty;
-   
+
 
    private string CurrentTurn => (winnerMessage == string.Empty) ? $"Player {State.PlayerTurn}'s Turn" : "";
    private string ResetStyle => (winnerMessage == string.Empty) ? "display: none;" : "";
@@ -91,8 +91,8 @@
    [Parameter]
    public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
 
-    protected override void OnInitialized()
-    {
-        State.ResetBoard();
-    }
+   protected override void OnInitialized()
+   {
+      State.ResetBoard();
+   }
 }

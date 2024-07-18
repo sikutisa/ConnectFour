@@ -31,22 +31,23 @@ public class GameState
 
 	public static readonly List<int[]> WinningPlaces = new();
 
-	public static void CalculateWinningPlaces() 
+	public static void CalculateWinningPlaces()
 	{
 
 		// Horizontal rows
-		for (byte row=0;row<6;row++){
+		for (byte row = 0; row < 6; row++)
+		{
 
 			byte rowCol1 = (byte)(row * 7);
 			byte rowColEnd = (byte)((row + 1) * 7 - 1);
 			byte checkCol = rowCol1;
-			while (checkCol <= rowColEnd-3)
+			while (checkCol <= rowColEnd - 3)
 			{
-				WinningPlaces.Add(new int[] { 
-					checkCol, 
-					(byte)(checkCol + 1), 
-					(byte)(checkCol + 2), 
-					(byte)(checkCol + 3) 
+				WinningPlaces.Add(new int[] {
+					checkCol,
+					(byte)(checkCol + 1),
+					(byte)(checkCol + 2),
+					(byte)(checkCol + 3)
 					});
 				checkCol++;
 			}
@@ -58,9 +59,9 @@ public class GameState
 		{
 
 			byte colRow1 = col;
-			byte colRowEnd = (byte)(35+col);
+			byte colRowEnd = (byte)(35 + col);
 			byte checkRow = colRow1;
-			while (checkRow <= 14+col)
+			while (checkRow <= 14 + col)
 			{
 				WinningPlaces.Add(new int[] {
 					checkRow,
@@ -68,7 +69,7 @@ public class GameState
 					(byte)(checkRow + 14),
 					(byte)(checkRow + 21)
 					});
-				checkRow+=7;
+				checkRow += 7;
 			}
 
 		}
@@ -164,7 +165,7 @@ public class GameState
 
 		// Drop the piece in
 		var landingSpot = column;
-		for (var i=column;i<42;i+=7)
+		for (var i = column; i < 42; i += 7)
 		{
 			if (TheBoard[landingSpot + 7] != 0) break;
 			landingSpot = i;
@@ -178,7 +179,8 @@ public class GameState
 
 	public List<int> TheBoard { get; private set; } = new List<int>(new int[42]);
 
-	public void ResetBoard() {
+	public void ResetBoard()
+	{
 		TheBoard = new List<int>(new int[42]);
 	}
 
