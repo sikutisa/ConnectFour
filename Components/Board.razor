@@ -11,16 +11,25 @@
 </HeadContent>
 
 <div>
-   <div class="board">
-      @for (var i = 0; i < 42; i++)
-      {
-         <span class="container">
+    <div class="board">
+    @for (var i = 0; i < 42; i++)
+    {
+        <span class="container">
             <span></span>
-         </span>
-      }
-   </div>
+        </span>
+    }
+    </div>
+    @for (var i = 0; i < 42; i++)
+    {
+       <span class="@pieces[i]"></span>
+    }
 </div>
 
 @code {
+   private string[] pieces = new string[42];
 
+    protected override void OnInitialized()
+    {
+        State.ResetBoard();
+    }
 }
